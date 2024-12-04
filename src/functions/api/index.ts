@@ -1,5 +1,5 @@
 import { BASE_URL, doFetch } from "..";
-import { IClientResponseRecord, IProvider } from "../../types";
+import { IClient, IClientResponseRecord, IProvider } from "../../types";
 
 async function getProvidersByEmail(
   emails: string[],
@@ -25,8 +25,16 @@ async function getClientResponseByPhoneNumber(
   return res ? res.json() : undefined;
 }
 
+async function getClientByPhoneNumber(
+  number: string,
+): Promise<IClient | undefined> {
+  const res = await doFetch(BASE_URL + `/client?phoneNumber=${number}`);
+  return res ? res.json() : undefined;
+}
+
 export {
   getProvidersByEmail,
   createClientResponse,
   getClientResponseByPhoneNumber,
+  getClientByPhoneNumber,
 };

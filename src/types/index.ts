@@ -12,4 +12,9 @@ interface IProvider {
   subRegion: string;
 }
 
-export { IProvider, IClientResponseRecord };
+interface IClient {
+  orgId: number;
+  state: string;
+}
+
+export { IProvider, IClientResponseRecord, IClient };
