@@ -11,5 +11,11 @@
     "url": "attain-aba-types"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "prettier": "^3.4.2"
+  }
 }
