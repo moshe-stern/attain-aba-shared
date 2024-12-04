@@ -1,6 +1,6 @@
 {
-  "name": "attain-aba-types",
-  "version": "1.0.4",
+  "name": "attain-aba-shared",
+  "version": "1.0.7",
   "files": [
     "dist"
   ],
