@@ -1,5 +1,10 @@
 import { BASE_URL, doFetch } from "..";
-import { IClient, IClientResponseRecord, IProvider } from "../../types";
+import {
+  IClient,
+  IClientResponseRecord,
+  ICubeStatus,
+  IProvider,
+} from "../../types";
 
 async function getProvidersByEmail(
   emails: string[],
@@ -8,12 +13,12 @@ async function getProvidersByEmail(
     BASE_URL + "/providers/providers-by-emails",
     emails,
   );
-  return res ? res.json() : undefined;
+  return res?.ok ? res.json() : undefined;
 }
 
 async function createClientResponse(rec: Omit<IClientResponseRecord, "id">) {
   const res = await doFetch(BASE_URL + "/twilio/client-response", rec);
-  return res ? res.ok : undefined;
+  return res?.ok;
 }
 
 async function getClientResponseByPhoneNumber(
@@ -22,14 +27,33 @@ async function getClientResponseByPhoneNumber(
   const res = await doFetch(
     BASE_URL + `/twilio/client-response?phoneNumber=${number}`,
   );
-  return res ? res.json() : undefined;
+  return res?.ok ? res.json() : undefined;
 }
 
 async function getClientByPhoneNumber(
   number: string,
 ): Promise<IClient | undefined> {
   const res = await doFetch(BASE_URL + `/client?phoneNumber=${number}`);
-  return res ? res.json() : undefined;
+  return res?.ok ? res.json() : undefined;
+}
+
+async function getCubeStatuses(): Promise<ICubeStatus[] | undefined> {
+  const res = await doFetch(BASE_URL + "/cube-status");
+  return res?.ok ? res.json() : undefined;
+}
+
+async function getMsgBoard() {
+  const res = await doFetch(BASE_URL + "/cube-status/message-board");
+  return res?.ok ? res.json() : undefined;
+}
+
+async function updateMsgBoard(message: string) {
+  const res = await doFetch(
+    BASE_URL + "/cube-status/message-board",
+    { message },
+    "PATCH",
+  );
+  return res?.ok ? res.json() : undefined;
 }
 
 export {
@@ -37,4 +61,7 @@ export {
   createClientResponse,
   getClientResponseByPhoneNumber,
   getClientByPhoneNumber,
+  getCubeStatuses,
+  updateMsgBoard,
+  getMsgBoard,
 };

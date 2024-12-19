@@ -14,7 +14,56 @@ interface IProvider {
 
 interface IClient {
   orgId: number;
-  state: string;
+  state?: string;
 }
 
-export { IProvider, IClientResponseRecord, IClient };
+interface IClientResponse {
+  ApiVersion: string;
+  SmsSid: string;
+  SmsStatus: string;
+  SmsMessageSid: string;
+  NumSegments: string;
+  ToState: string;
+  From: string;
+  MessageSid: string;
+  AccountSid: string;
+  ToCity: string;
+  FromCountry: string;
+  ToZip: string;
+  FromCity: string;
+  To: string;
+  FromZip: string;
+  ToCountry: string;
+  Body: string;
+  NumMedia: string;
+  FromState: string;
+}
+
+interface ICoordinator {
+  Company: number;
+  States: string[];
+  Coordinator: string;
+  Email: string;
+  Phone: string;
+}
+
+enum EStatus {
+  THERE_WILL_BE_A_CHANGE = 1,
+  NO_CHANGE = 2,
+  I_DO_NOT_KNOW_YET = 3,
+}
+
+interface ICubeStatus {
+  loadTime?: string;
+  pipelineName?: string;
+  name: string;
+}
+export {
+  IProvider,
+  IClientResponseRecord,
+  IClient,
+  EStatus,
+  ICoordinator,
+  IClientResponse,
+  ICubeStatus,
+};
