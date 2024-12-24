@@ -56,6 +56,13 @@ async function updateMsgBoard(message: string) {
   return res?.ok ? res.json() : undefined;
 }
 
+async function getSecret(token: string) {
+  return fetch(BASE_URL + "/secret-key", {
+    method: "POST",
+    body: JSON.stringify(token),
+  });
+}
+
 export {
   getProvidersByEmail,
   createClientResponse,
@@ -64,4 +71,5 @@ export {
   getCubeStatuses,
   updateMsgBoard,
   getMsgBoard,
+  getSecret,
 };

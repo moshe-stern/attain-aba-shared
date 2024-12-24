@@ -8,12 +8,8 @@ async function auth(secretKey: string) {
 
 async function doFetch(url: string, data?: any, method: string = "POST") {
   try {
-    if (!SECRET_KEY) {
-      throw new Error("Secret Key not set");
-    }
     const options: RequestInit = {
       method: data ? method : "GET",
-      mode: "cors",
       headers: {
         "Content-Type": "application/json",
         "x-secret-key": SECRET_KEY,

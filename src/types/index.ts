@@ -58,6 +58,17 @@ interface ICubeStatus {
   pipelineName?: string;
   name: string;
 }
+
+class AppError extends Error {
+  status: number;
+  isOperational: boolean;
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status || 500;
+    this.isOperational = true;
+  }
+}
+
 export {
   IProvider,
   IClientResponseRecord,
@@ -66,4 +77,5 @@ export {
   ICoordinator,
   IClientResponse,
   ICubeStatus,
+  AppError,
 };
