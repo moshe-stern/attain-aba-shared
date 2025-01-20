@@ -1,6 +1,15 @@
 {
-  "name": "attain-aba-shared",
-  "version": "1.0.20",
+  "name": "@attain/shared",
+  "private": true,
+  "version": "1.0.22",
+  "exports": {
+    "./functions": {
+      "default": "./src/index.ts"
+    },
+    "./types": {
+      "default": "./src/types/index.ts"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -9,10 +18,13 @@
   "description": "Shared types and functions for Attain ABA",
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "typescript": "^5.7.2"
+  "devDependencies": { 
+    "@attain/tsconfig": "workspace:*",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+    
   },
   "dependencies": {
-    "prettier": "^3.4.2"
+    "@attain/db":"workspace:*"
   }
 }

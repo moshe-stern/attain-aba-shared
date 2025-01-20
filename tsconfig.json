@@ -1,11 +1,5 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "declaration": true,
-    "moduleResolution": "node",
-    "target": "es2019",
-    "module": "commonjs",
-    "strict": true
-  },
-  "include": ["src"]
+  "extends": "@attain/tsconfig/internal-package.json",
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

@@ -12,7 +12,7 @@ async function doFetch(url: string, data?: any, method: string = "POST") {
       method: data ? method : "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-secret-key": SECRET_KEY,
+        "SECRET_KEY": SECRET_KEY,
       },
       ...(data && { body: JSON.stringify(data) }),
     };

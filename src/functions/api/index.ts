@@ -1,50 +1,49 @@
 import { BASE_URL, doFetch } from "..";
 import {
-  IClient,
-  IClientResponseRecord,
+
   ICubeStatus,
-  IProvider,
 } from "../../types";
+import {AttainDataLake, AttainDMAttainAutomation} from "@attain/db/types"
 
 async function getProvidersByEmail(
   emails: string[],
-): Promise<IProvider[] | undefined> {
+) {
   const res = await doFetch(
     BASE_URL + "/providers/providers-by-emails",
     emails,
   );
-  return res?.ok ? res.json() : undefined;
+  return res?.ok ? res.json() as Promise<AttainDataLake.InsightsProvider[]> : undefined;
 }
 
-async function createClientResponse(rec: Omit<IClientResponseRecord, "id">) {
+async function createClientResponse(rec: Omit<AttainDMAttainAutomation.TwilioClientResponses, "id">) {
   const res = await doFetch(BASE_URL + "/twilio/client-response", rec);
   return res?.ok;
 }
 
 async function getClientResponseByPhoneNumber(
   number: string,
-): Promise<IClientResponseRecord | undefined> {
+) {
   const res = await doFetch(
     BASE_URL + `/twilio/client-response?phoneNumber=${number}`,
   );
-  return res?.ok ? res.json() : undefined;
+  return res?.ok ? res.json() as Promise<AttainDMAttainAutomation.TwilioClientResponses[]> : undefined;
 }
 
 async function getClientByPhoneNumber(
   number: string,
-): Promise<IClient | undefined> {
+) {
   const res = await doFetch(BASE_URL + `/client?phoneNumber=${number}`);
-  return res?.ok ? res.json() : undefined;
+  return res?.ok ? res.json() as Promise<AttainDataLake.InsightsClient[]> : undefined;
 }
 
-async function getCubeStatuses(): Promise<ICubeStatus[] | undefined> {
+async function getCubeStatuses() {
   const res = await doFetch(BASE_URL + "/cube-status");
-  return res?.ok ? res.json() : undefined;
+  return res?.ok ? res.json() as Promise<ICubeStatus[]> : undefined;
 }
 
 async function getMsgBoard() {
   const res = await doFetch(BASE_URL + "/cube-status/message-board");
-  return res?.ok ? res.json() : undefined;
+  return res?.ok ? res.json() as Promise<string> : undefined;
 }
 
 async function updateMsgBoard(message: string) {

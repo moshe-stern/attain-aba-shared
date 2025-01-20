@@ -1,21 +1,5 @@
-interface IClientResponseRecord {
-  id: number;
-  phoneNumber: string;
-  responseType: string;
-  body: string;
-  responseDate: Date;
-}
+import { AttainDMAttainAutomation } from '@attain/db/types';
 
-interface IProvider {
-  id: string;
-  email: string;
-  subRegion: string;
-}
-
-interface IClient {
-  orgId: number;
-  state?: string;
-}
 
 interface IClientResponse {
   ApiVersion: string;
@@ -53,11 +37,7 @@ enum EStatus {
   I_DO_NOT_KNOW_YET = 3,
 }
 
-interface ICubeStatus {
-  loadTime?: string;
-  pipelineName?: string;
-  name: string;
-}
+type ICubeStatus = AttainDMAttainAutomation.LastRefreshTime & { name: string }
 
 class AppError extends Error {
   status: number;
@@ -68,14 +48,12 @@ class AppError extends Error {
     this.isOperational = true;
   }
 }
-
+export * from '@attain/db/types'
 export {
-  IProvider,
-  IClientResponseRecord,
-  IClient,
-  EStatus,
+  EStatus, AppError
+};
+export type {
   ICoordinator,
   IClientResponse,
-  ICubeStatus,
-  AppError,
+  ICubeStatus
 };
