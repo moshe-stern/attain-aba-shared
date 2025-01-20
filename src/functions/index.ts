@@ -1,5 +1,6 @@
-const BASE_URL =
-  "https://db-api-manager-bucrh8bmd2d4ghdg.eastus-01.azurewebsites.net";
+import dotenv from 'dotenv'
+dotenv.config()
+const BASE_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? process.env.SERVER : process.env.DEV_SERVER
 let SECRET_KEY: string | null = null;
 
 async function auth(secretKey: string) {
